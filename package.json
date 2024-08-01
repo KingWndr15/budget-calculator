@@ -10,7 +10,13 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@pinia/nuxt": "^0.5.2",
+    "chart.js": "^4.4.3",
     "nuxt": "^3.12.4",
-    "vue": "latest"
+    "papaparse": "^5.4.1",
+    "pinia": "^2.2.0",
+    "vue": "latest",
+    "vue-chartjs": "^5.3.1",
+    "xlsx": "^0.18.5"
   }
 }
