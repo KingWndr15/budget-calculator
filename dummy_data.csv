@@ -1,26 +1,31 @@
-Date,Description,Amount,Category
-2024-01-05,Salary,5000.00,Income
-2024-01-10,Grocery shopping,-150.75,Food
-2024-01-15,Electric bill,-85.20,Utilities
-2024-01-20,Restaurant dinner,-65.30,Food
-2024-01-25,Gas,-45.00,Transportation
-2024-02-01,Rent payment,-1200.00,Housing
-2024-02-05,Salary,5000.00,Income
-2024-02-08,Internet bill,-79.99,Utilities
-2024-02-12,Movie tickets,-25.00,Entertainment
-2024-02-18,Clothing purchase,-120.50,Shopping
-2024-02-22,Pharmacy,-35.80,Healthcare
-2024-03-01,Freelance work,800.00,Income
-2024-03-05,Salary,5000.00,Income
-2024-03-07,Grocery shopping,-180.25,Food
-2024-03-12,Phone bill,-60.00,Utilities
-2024-03-15,Car insurance,-110.00,Insurance
-2024-03-20,Birthday gift,-50.00,Gifts
-2024-03-25,Gym membership,-40.00,Health & Fitness
-2024-04-01,Rent payment,-1200.00,Housing
-2024-04-05,Salary,5000.00,Income
-2024-04-08,Grocery shopping,-135.60,Food
-2024-04-12,Electric bill,-92.30,Utilities
-2024-04-18,Concert tickets,-150.00,Entertainment
-2024-04-22,Gas,-48.50,Transportation
-2024-04-28,Online course,-199.99,Education
+date,description,amount,category
+2024-03-01,Monthly salary,3000.00,Income
+2024-03-03,Grocery shopping,-85.50,Food
+2024-03-05,Client payment,500.00,Freelance Income
+2024-03-10,Electric bill,-65.20,Utilities
+2024-03-15,New laptop for work,-1200.00,Equipment
+2024-03-18,Dinner with friends,-75.30,Entertainment
+2024-03-22,Uber ride,-15.75,Transportation
+2024-03-25,Online course subscription,-49.99,Education
+2024-03-28,Haircut,-30.00,Personal Care
+2024-03-31,Rent payment,-800.00,Housing
+2024-04-01,Monthly salary,3000.00,Income
+2024-04-04,Office supplies,-45.00,Business Expenses
+2024-04-07,Gym membership,-50.00,Health
+2024-04-10,Client meeting coffee,-12.50,Business Meals
+2024-04-15,Smartphone bill,-60.00,Utilities
+2024-04-18,Birthday gift for mom,-100.00,Gifts
+2024-04-22,Gasoline,-40.00,Transportation
+2024-04-25,Freelance project payment,750.00,Freelance Income
+2024-04-28,Home internet,-55.00,Utilities
+2024-04-30,Grocery shopping,-92.75,Food
+2024-05-01,Monthly salary,3000.00,Income
+2024-05-03,Car insurance,-120.00,Insurance
+2024-05-06,Business software subscription,-39.99,Business Expenses
+2024-05-10,Concert tickets,-80.00,Entertainment
+2024-05-14,Client project materials,-150.00,Business Expenses
+2024-05-18,Dentist appointment,-200.00,Healthcare
+2024-05-22,Bookstore purchase,-35.00,Education
+2024-05-25,Freelance consultation,300.00,Freelance Income
+2024-05-28,Restaurant dinner,-55.00,Food
+2024-05-31,Rent payment,-800.00,Housing
