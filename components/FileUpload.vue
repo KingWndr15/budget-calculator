@@ -1,13 +1,14 @@
 <template>
     <div>
         <input id="file" type="file" @change="handleFileUpload" accept=".csv,.xlsx,.xls" class="mb-4" />
-        <div v-if="!fileUploaded" class="file mt-1">
+        <div class="file mt-1">
             <img src="@/assets/icons/cloud.svg" alt="">
             <h2 class="mt-1 weight-5 font-size-16">Drag a file here or chose the files you want to upload from your
                 computer. </h2>
             <p>Should not be more than <span>5mb</span>, Must be a <span>.csv</span> or <span>.xlsx</span></p>
             <label class="mt-1" for="file">Upload a file</label>
         </div>
+        <!-- <label v-if="fileUploaded" class="mt-1 second" for="file">Upload a file</label> -->
     </div>
 </template>
 
@@ -18,17 +19,16 @@ import { useFinanceStore } from '~/store/finance'
 const financeStore = useFinanceStore()
 
 const handleFileUpload = async (event) => {
-  const file = event.target.files[0]
-  if (file) {
-    await financeStore.processFile(file)
-  }
+    const file = event.target.files[0]
+    if (file) {
+        await financeStore.processFile(file)
+    }
 }
 
-const fileUploaded = computed(() => financeStore.doesEntryExist)
 </script>
 
 
-<style>
+<style scoped >
 input[type="file"] {
     display: none;
 }
@@ -53,7 +53,7 @@ input[type="file"] {
     font-weight: 500;
 }
 
-.file label {
+label {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -64,5 +64,9 @@ input[type="file"] {
     font-weight: 500;
     border: 0px;
     cursor: pointer;
+}
+
+.second {
+    width: 500px;
 }
 </style>

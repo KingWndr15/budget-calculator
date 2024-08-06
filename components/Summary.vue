@@ -1,6 +1,6 @@
 <template>
   <div v-if="filteredTotalIncome !== null && filteredTotalExpense !== null" class="summary-container">
-    <p class="net-income">Net Income: ${{ netIncome.toFixed(2) }}</p>
+    <p class="net-income">Net Income: {{ formatCurrency(netIncome) }}</p>
     <p class="total-income">Total Income: ${{ filteredTotalIncome.toFixed(2) }}</p>
     <p class="total-expense">Total Expense: -${{ filteredTotalExpense.toFixed(2) }}</p>
   </div>
@@ -9,6 +9,18 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { useFinanceStore } from '~/store/finance'
+
+const formatCurrency = (amount) => {
+  const absAmount = Math.abs(amount);
+  const formattedAmount = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  }).format(absAmount);
+
+  return amount < 0 ? `-${formattedAmount}` : formattedAmount;
+}
 
 const financeStore = useFinanceStore()
 const { filteredTotalIncome, filteredTotalExpense, netIncome } = storeToRefs(financeStore)

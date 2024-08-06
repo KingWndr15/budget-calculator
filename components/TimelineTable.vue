@@ -148,8 +148,12 @@ const downloadCSV = () => {
 
 <style scoped>
 .transaction-table {
-    width: 100%;
+    max-width: 1000px;
     border-collapse: collapse;
+
+    @media ( width < 1200px ) {
+        width: 100%;
+    }
 }
 
 .transaction-table th,
@@ -157,6 +161,11 @@ const downloadCSV = () => {
     padding: 12px 15px;
     text-align: left;
     border-bottom: 1px solid #ddd;
+}
+
+.transaction-table td {
+    max-width: 200px;
+    overflow-y: auto;
 }
 
 .transaction-table th {

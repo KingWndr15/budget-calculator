@@ -1,5 +1,5 @@
 <template>
-  <div class="container mx-auto p-4">
+  <main class="container mx-auto">
     <h1>Finance Tracker</h1>
 
     <DateRangeSelector />
@@ -13,7 +13,7 @@
       </div>
       <TimelineTable :entries="displayedEntries" @entryDeleted="refreshEntries" />
     </div>
-  </div>
+  </main>
 </template>
 
 <script setup>
@@ -49,6 +49,11 @@ const refreshEntries = () => {
 .bottom {
   display: flex;
   justify-content: space-between;
+  gap: 20px;
+
+  @media ( width < 1200px ) {
+    flex-direction: column;
+  }
 }
 
 .summary {
