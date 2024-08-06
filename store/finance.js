@@ -13,15 +13,19 @@ export const useFinanceStore = defineStore("finance", {
     startDate: null,
     endDate: null,
     categories: [],
+    doesEntryExist: false
   }),
 
   actions: {
     async processFile(file) {
       let data;
+
       if (file.name.endsWith(".csv")) {
         data = await this.parseCSV(file);
+        this.doesEntryExist = true;
       } else if (file.name.endsWith(".xlsx") || file.name.endsWith(".xls")) {
         data = await this.parseExcel(file);
+        this.doesEntryExist = true;
       } else {
         throw new Error("Unsupported file type");
       }
@@ -54,6 +58,15 @@ export const useFinanceStore = defineStore("finance", {
       this.calculateNetIncome();
     },
 
+    addEntry(newEntry) {
+      this.entries.push(newEntry);
+      this.categories = Array.from(new Set([...this.categories, newEntry.category]));
+      this.doesEntryExist = true;
+      console.log(this.doesEntryExist);
+      this.filterEntries();
+      this.calculateNetIncome();
+    },
+
     updateEntry(updatedEntry) {
       const index = this.entries.findIndex((e) => e.id === updatedEntry.id);
       if (index !== -1) {
@@ -61,6 +74,12 @@ export const useFinanceStore = defineStore("finance", {
         this.filterEntries();
         this.calculateNetIncome();
       }
+    },
+
+    deleteEntry(id) {
+      this.entries = this.entries.filter((entry) => entry.id !== id);
+      this.filterEntries();
+      this.calculateNetIncome();
     },
 
     async parseCSV(file) {
