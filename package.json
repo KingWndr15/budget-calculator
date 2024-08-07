@@ -19,5 +19,8 @@
     "vue": "latest",
     "vue-chartjs": "^5.3.1",
     "xlsx": "^0.18.5"
-  }
+  },
+  "engines": {
+  "node": "14.x" 
+}
 }

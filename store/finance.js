@@ -1,7 +1,6 @@
 // store/finance.js
 import { defineStore } from "pinia";
 import Papa from "papaparse";
-import * as XLSX from "xlsx";
 
 export const useFinanceStore = defineStore("finance", {
   state: () => ({
@@ -13,7 +12,7 @@ export const useFinanceStore = defineStore("finance", {
     startDate: null,
     endDate: null,
     categories: [],
-    doesEntryExist: false
+    doesEntryExist: false,
   }),
 
   actions: {
@@ -22,9 +21,6 @@ export const useFinanceStore = defineStore("finance", {
 
       if (file.name.endsWith(".csv")) {
         data = await this.parseCSV(file);
-        this.doesEntryExist = true;
-      } else if (file.name.endsWith(".xlsx") || file.name.endsWith(".xls")) {
-        data = await this.parseExcel(file);
         this.doesEntryExist = true;
       } else {
         throw new Error("Unsupported file type");
@@ -60,7 +56,9 @@ export const useFinanceStore = defineStore("finance", {
 
     addEntry(newEntry) {
       this.entries.push(newEntry);
-      this.categories = Array.from(new Set([...this.categories, newEntry.category]));
+      this.categories = Array.from(
+        new Set([...this.categories, newEntry.category])
+      );
       this.doesEntryExist = true;
       console.log(this.doesEntryExist);
       this.filterEntries();
@@ -101,23 +99,6 @@ export const useFinanceStore = defineStore("finance", {
           },
           header: true,
         });
-      });
-    },
-
-    async parseExcel(file) {
-      const data = await file.arrayBuffer();
-      const workbook = XLSX.read(data);
-      const sheetName = workbook.SheetNames[0];
-      const worksheet = workbook.Sheets[sheetName];
-      const jsonData = XLSX.utils.sheet_to_json(worksheet);
-
-      // Normalize headers to lowercase
-      return jsonData.map((row) => {
-        const normalizedRow = {};
-        Object.keys(row).forEach((key) => {
-          normalizedRow[key.toLowerCase()] = row[key];
-        });
-        return normalizedRow;
       });
     },
 

@@ -5,7 +5,7 @@
             <img src="@/assets/icons/cloud.svg" alt="">
             <h2 class="mt-1 weight-5 font-size-16">Drag a file here or chose the files you want to upload from your
                 computer. </h2>
-            <p>Should not be more than <span>5mb</span>, Must be a <span>.csv</span> or <span>.xlsx</span></p>
+            <p>Should not be more than <span>5mb</span>, Must be a <span>.csv</span> file.</p>
             <label class="mt-1" for="file">Upload a file</label>
         </div>
         <!-- <label v-if="fileUploaded" class="mt-1 second" for="file">Upload a file</label> -->
