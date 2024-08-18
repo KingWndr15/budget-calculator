@@ -7,7 +7,7 @@
     <FileUpload />
     <PieChart :entries="displayedEntries" />
     <div class="bottom mt-4">
-      <div class="summary" >
+      <div class="summary">
         <Summary />
         <NewEntryForm />
       </div>
@@ -46,12 +46,24 @@ const refreshEntries = () => {
 </script>
 
 <style>
+
+main {
+
+  @media (width < 1000px) {
+    padding: 20px;
+  }
+
+  @media (width < 800px) {
+    padding: 15px;
+  }
+}
+
 .bottom {
   display: flex;
   justify-content: space-between;
   gap: 20px;
 
-  @media ( width < 1200px ) {
+  @media (width < 1200px) {
     flex-direction: column;
   }
 }

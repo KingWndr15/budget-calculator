@@ -6,53 +6,57 @@
                 Download CSV <img src="@/assets/icons/download.svg" alt="">
             </button>
         </div>
-        <table v-if="entries && entries.length" class="transaction-table">
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Description</th>
-                    <th>Amount</th>
-                    <th>Type</th>
-                    <th>Category</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="entry in entries" :key="entry.id">
-                    <td>
-                        <input v-if="editingEntry === entry.id" type="date" v-model="entry.date" class="editable-input">
-                        <span v-else>{{ formatDate(entry.date) }}</span>
-                    </td>
-                    <td>
-                        <input v-if="editingEntry === entry.id" type="text" v-model="entry.description"
-                            class="editable-input">
-                        <span v-else>{{ entry.description }}</span>
-                    </td>
-                    <td>
-                        <input v-if="editingEntry === entry.id" type="number" v-model="entry.amount" step="0.01"
-                            class="editable-input">
-                        <span v-else>{{ formatCurrency(entry.amount) }}</span>
-                    </td>
-                    <td>{{ entry.type }}</td>
-                    <td>
-                        <input v-if="editingEntry === entry.id" type="text" v-model="entry.category"
-                            class="editable-input">
-                        <span v-else>{{ entry.category }}</span>
-                    </td>
-                    <td>
-                        <button v-if="editingEntry === entry.id" @click="saveEdit(entry)"
-                            class="action-button save">Save</button>
-                        <button v-if="editingEntry === entry.id" @click="cancelEdit"
-                            class="action-button cancel">Cancel</button>
-                        <button v-else @click="startEdit(entry)" class="action-button edit">Edit</button>
-                        <button @click="deleteEntry(entry.id)" class="action-button delete">Delete</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <p v-else>No entries to display.</p>
+        <div class="table-container">
+            <table v-if="entries && entries.length" class="transaction-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Description</th>
+                        <th>Amount</th>
+                        <th>Type</th>
+                        <th>Category</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="entry in entries" :key="entry.id">
+                        <td>
+                            <input v-if="editingEntry === entry.id" type="date" v-model="entry.date"
+                                class="editable-input">
+                            <span v-else>{{ formatDate(entry.date) }}</span>
+                        </td>
+                        <td>
+                            <input v-if="editingEntry === entry.id" type="text" v-model="entry.description"
+                                class="editable-input">
+                            <span v-else>{{ entry.description }}</span>
+                        </td>
+                        <td>
+                            <input v-if="editingEntry === entry.id" type="number" v-model="entry.amount" step="0.01"
+                                class="editable-input">
+                            <span v-else>{{ formatCurrency(entry.amount) }}</span>
+                        </td>
+                        <td>{{ entry.type }}</td>
+                        <td>
+                            <input v-if="editingEntry === entry.id" type="text" v-model="entry.category"
+                                class="editable-input">
+                            <span v-else>{{ entry.category }}</span>
+                        </td>
+                        <td class="actions">
+                            <button v-if="editingEntry === entry.id" @click="saveEdit(entry)"
+                                class="action-button save">Save</button>
+                            <button v-if="editingEntry === entry.id" @click="cancelEdit"
+                                class="action-button cancel">Cancel</button>
+                            <button v-else @click="startEdit(entry)" class="action-button edit">Edit</button>
+                            <button @click="deleteEntry(entry.id)" class="action-button delete">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <p v-else>No entries to display.</p>
+        </div>
     </div>
 </template>
+
 
 <script setup>
 import { ref } from 'vue'
@@ -147,12 +151,19 @@ const downloadCSV = () => {
 
 
 <style scoped>
-.transaction-table {
-    max-width: 1000px;
-    border-collapse: collapse;
+.table-container {
+    max-width: 100%;
+    overflow-x: auto;
+}
 
-    @media ( width < 1200px ) {
-        width: 100%;
+.transaction-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 700px;
+    /* Ensures table has a minimum width for horizontal scrolling */
+
+    @media (max-width: 1200px) {    
+        width: 800px;
     }
 }
 
@@ -161,10 +172,15 @@ const downloadCSV = () => {
     padding: 12px 15px;
     text-align: left;
     border-bottom: 1px solid #ddd;
+
+    @media (max-width: 1000px) {
+        padding: 12px 5px;
+    }
 }
 
 .transaction-table td {
-    max-width: 200px;
+    /* max-width: 200px; */
+    width: 150px;
     overflow-y: auto;
 }
 
@@ -182,6 +198,16 @@ const downloadCSV = () => {
     padding: 8px;
     border: 1px solid #ddd;
     border-radius: 4px;
+
+    @media (max-width: 1000px) {
+        padding: 0px;
+    }
+}
+
+.actions {
+    @media (max-width: 1000px) {
+        width: 120px;
+    }
 }
 
 .action-button {
@@ -191,6 +217,11 @@ const downloadCSV = () => {
     cursor: pointer;
     font-weight: 500;
     margin-right: 4px;
+
+    @media (max-width: 1000px) {
+        padding: 4px 8px;
+        font-size: 14px;
+    }
 }
 
 .action-button.save {

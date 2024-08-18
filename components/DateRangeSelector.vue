@@ -1,10 +1,14 @@
 <template>
   <div class="mt-2 container ">
-    <label class="weight-5" for="start-date">Showing Income vs. Expenses from</label>
-    <input type="date" id="start-date" v-model="startDate" @change="updateDateRange" />
+    <div>
+      <label class="weight-5" for="start-date">Start Date:</label>
+      <input type="date" id="start-date" v-model="startDate" @change="updateDateRange" />
+    </div>
 
-    <label for="end-date">to</label>
-    <input type="date" id="end-date" v-model="endDate" @change="updateDateRange" />
+    <div>
+      <label for="end-date">End Date</label>
+      <input type="date" id="end-date" v-model="endDate" @change="updateDateRange" />
+    </div>
   </div>
 </template>
 
@@ -39,6 +43,12 @@ watch(entries, () => {
   gap: 5px;
 }
 
+.container label {
+  @media (width < 800px) {
+    font-size: 14px;
+  }
+}
+
 .container input[type="date"] {
   max-width: 120px;
   padding: 0px;
@@ -50,5 +60,4 @@ watch(entries, () => {
   font-weight: 600;
   -webkit-appearance: none;
 }
-
 </style>

@@ -8,7 +8,6 @@
             <p>Should not be more than <span>5mb</span>, Must be a <span>.csv</span> file.</p>
             <label class="mt-1" for="file">Upload a file</label>
         </div>
-        <!-- <label v-if="fileUploaded" class="mt-1 second" for="file">Upload a file</label> -->
     </div>
 </template>
 
@@ -28,7 +27,7 @@ const handleFileUpload = async (event) => {
 </script>
 
 
-<style scoped >
+<style scoped>
 input[type="file"] {
     display: none;
 }
@@ -42,10 +41,28 @@ input[type="file"] {
     width: 100%;
     border: 1.5px dashed black;
     border-radius: 4px;
+
+    @media (width < 800px) {
+        border-radius: 4px;
+        padding: 35px;
+    }
+}
+
+.file h2 {
+
+    @media (width < 800px) {
+        font-size: 14px;
+        text-align: center;
+    }
 }
 
 .file p {
     color: #191D23;
+
+    @media (width < 800px) {
+        font-size: 14px;
+        text-align: center;
+    }
 }
 
 .file p span {
@@ -64,6 +81,11 @@ label {
     font-weight: 500;
     border: 0px;
     cursor: pointer;
+
+    @media (width < 800px) {
+        padding: 4px 6px;
+        font-size: 14px;
+    }
 }
 
 .second {
